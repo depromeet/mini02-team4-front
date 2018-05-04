@@ -23,8 +23,8 @@ class NavItem  extends Component {
 class Navigation extends Component {
     render() {
         return (
-            <React.Fragment>
-                <nav id="nav-tab" className="mainNav navbar navbar-fixed-top">
+            <div id='navigation-bar'>
+                <nav id="nav-tab" className="main-nav navbar fixed-top">
                     <div className="container-fluid">
                     <div className="navbar-header">
                         <a href="#" className="navbar-brand">
@@ -33,7 +33,7 @@ class Navigation extends Component {
                         </a>
                     </div>
                     <div className="container w-100">
-                    <div className="nav nav-tabs nav-fill" role="tablist">
+                    <div className="nav nav-pills nav-fill" role="tablist">
                         {<NavItem tabs={this.props.tabs}></NavItem>}
                     </div>
                     </div>
@@ -42,7 +42,7 @@ class Navigation extends Component {
                     <div className="container-fluid collapse navbar-collapse">
                     </div> */}
                 </nav>
-                <div className="tab-content">
+                <div className="tab-content tab-mt-md tab-mt-lg tab-mt-xl tab-mt-sm">
                     {this.props.tabs.map((val, idx, arr) => {
                         var elementType = val.body;
                         return (
@@ -54,7 +54,7 @@ class Navigation extends Component {
                         );
                     })}
                 </div>
-            </React.Fragment>
+            </div>
         )
     }
 }

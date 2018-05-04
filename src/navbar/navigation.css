@@ -1,2 +1,26 @@
-.mainNav a{
+#nav-tab{
+    border-bottom: 1px solid black;
+    background: white;
+}
+
+@media (min-width: 190px) {
+    .tab-mt-sm {
+        margin-top: 220px !important;
+    }
+}
+@media (min-width: 275px) {
+    .tab-mt-md {
+        margin-top: 140px !important;
+    }
+}
+@media (min-width: 450px) {
+    .tab-mt-lg {
+        margin-top: 100px !important;
+    }
+}
+
+@media (min-width: 646px) {
+    .tab-mt-xl {
+        margin-top: 60px !important;
+    }
 }
