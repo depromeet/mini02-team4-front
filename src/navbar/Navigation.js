@@ -3,32 +3,6 @@ import './navigation.css';
 import logo from '../logo.svg';
 
 const $ = window.$;
-const navItem = [
-    {
-        name: '키워드',
-        label: 'nav-keywords-tab',
-        page: './keywords.html',
-        control: 'nav-keywords-doc'
-    },
-    {
-        name: '선물 추천',
-        label: 'nav-gifts-tab',
-        page: './index.html',
-        control: 'nav-gifts-doc'
-    },
-    {
-        name: '친구들',
-        label: 'nav-friends-tab',
-        page: './index.html',
-        control: 'nav-friends-doc'
-    },
-    {
-        name: '계좌번호',
-        label: 'nav-account-tab',
-        page: './index.html',
-        control: 'nav-account-doc'
-    }
-];
 
 class NavItem  extends Component {
     render() {
@@ -37,8 +11,8 @@ class NavItem  extends Component {
                         <a id={val.label} 
                             role="tab" data-toggle="tab" 
                             className={idx===0?className + " active": className} 
-                            href={"#" + val.control + 'tab'} key={val.label} 
-                            aria-controls={val.control}>
+                            href={"#" + val.label + 'tab'} key={val.label} 
+                            aria-controls={val.label + 'tab'}>
                             {val.name}
                         </a>
                         )
@@ -71,12 +45,13 @@ class Navigation extends Component {
                 <div className="tab-content">
                     {this.props.tabs.map((val, idx, arr) => {
                         var elementType = val.body;
-                        var props = {
-                            'id':val.label + 'tab',
-                            'className': 'tab-pane' + (idx===0?' show active':''),
-                            'role':'tabpanel',
-                        };
-                        return React.createElement(elementType, props);
+                        return (
+                            <div 
+                            id={val.label + 'tab'}
+                            className={'tab-pane' + (idx===0?' show active':'')}
+                            role={'tabpanel'}
+                            >{React.createElement(val.body)}</div>
+                        );
                     })}
                 </div>
             </React.Fragment>
