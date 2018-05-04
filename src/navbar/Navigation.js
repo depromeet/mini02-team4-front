@@ -7,7 +7,7 @@ const navItem = [
     {
         name: '키워드',
         label: 'nav-keywords-tab',
-        page: './index.html',
+        page: './keywords.html',
         control: 'nav-keywords-doc'
     },
     {
@@ -32,12 +32,12 @@ const navItem = [
 
 class NavItem  extends Component {
     render() {
-        let className="nav-link nav-item align-middle";
-        return this.props.menu.map((val ,idx, arr) => (
+        let className="nav-item nav-link";
+        return this.props.tabs.map((val ,idx, arr) => (
                         <a id={val.label} 
                             role="tab" data-toggle="tab" 
                             className={idx===0?className + " active": className} 
-                            href={"#" + val.control} key={val.name} 
+                            href={"#" + val.control + 'tab'} key={val.label} 
                             aria-controls={val.control}>
                             {val.name}
                         </a>
@@ -50,22 +50,34 @@ class Navigation extends Component {
     render() {
         return (
             <React.Fragment>
-                <nav id="nav-tab" className="mainNav navbar navbar-expand-lg">
-                    <a href="#" className="navbar-brand">
-                        <img src={logo} alt="tify logo" className="d-inline-block" width="30"/>
-                        tify
-                    </a>
-                    <div className="collapse navbar-collapse" >
-                        <div className="nav navbar-nav nav-tabs nav-fill w-100" role="tablist">
-                                    {<NavItem menu={navItem}></NavItem>}
-                        </div>
+                <nav id="nav-tab" className="mainNav navbar navbar-fixed-top">
+                    <div className="container-fluid">
+                    <div className="navbar-header">
+                        <a href="#" className="navbar-brand">
+                            <img src={logo} alt="tify logo" className="" width=""/>
+                            tify
+                        </a>
                     </div>
+                    <div className="container w-100">
+                    <div className="nav nav-tabs nav-fill" role="tablist">
+                        {<NavItem tabs={this.props.tabs}></NavItem>}
+                    </div>
+                    </div>
+                    </div>
+{/*                                         </div>
+                    <div className="container-fluid collapse navbar-collapse">
+                    </div> */}
                 </nav>
                 <div className="tab-content">
-                    <div id='nav-keywords-doc' className="tab-pane fade show active" role="tabpanel" aria-labelledby='nav-keywords-tab'>keywords tab</div>
-                    <div id='nav-gifts-doc' className="tab-pane fade" role="tabpanel" aria-labelledby='nav-gifts-tab'>gifts tab</div>
-                    <div id='nav-friends-doc' className="tab-pane fade" role="tabpanel" aria-labelledby='nav-friends-tab'>friends tab</div>
-                    <div id='nav-account-doc' className="tab-pane fade" role="tabpanel" aria-labelledby='nav-account-tab'>account tab</div>
+                    {this.props.tabs.map((val, idx, arr) => {
+                        var elementType = val.body;
+                        var props = {
+                            'id':val.label + 'tab',
+                            'className': 'tab-pane' + (idx===0?' show active':''),
+                            'role':'tabpanel',
+                        };
+                        return React.createElement(elementType, props);
+                    })}
                 </div>
             </React.Fragment>
         )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './tagpage.css';
+import './keywordstyle.css';
 
 function TargetInfo(props) {
     return (
@@ -7,7 +7,7 @@ function TargetInfo(props) {
     );
 }
 
-class TagMain extends Component {
+class KeywordMain extends Component {
     render() {
         return (
             <div className='tagmain'>
@@ -18,4 +18,4 @@ class TagMain extends Component {
     }
 }
 
-export default TagMain;
+export default KeywordMain;
