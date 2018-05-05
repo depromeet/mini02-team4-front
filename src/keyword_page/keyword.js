@@ -29,7 +29,7 @@ function TargetInfo(props) {
     );
 }
 
-function KeywordCloud (props) {
+function KeywordSelector (props) {
     return (
         <button id='keyword-cloud' 
         className='btn btn-primary text-center col-xs-4 col-sm-3 col-md-2' 
@@ -41,25 +41,38 @@ function KeywordCloud (props) {
 }
 
 function CategoryModal(props) {
+    var key = props.keywordData.key;
+    var items = props.keywordData.items;
     return (
         <div class='modal fade' 
         id={'keyword-modal-' + props.idx} 
         role='dialog' 
         tabindex='1' 
-        aria-lebelledby={'keyword-modal-label' + props.idx}
+        aria-labelledby={'keyword-modal-label' + props.idx}
         aria-hidden='true'>
             <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
                     <div class='modal-header'>
                         <h5 class="modal-title">
-                            {props.keywordData.key}
+                            {key}
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Modal body text goes here.</p>
+                        {items.map((val, idx, arr) => {
+                            return (
+                                <div class='form-check'>
+                                    <input class='form-check-input' type='checkbox'
+                                        value={val} id={key + "-" + idx}>
+                                    </input>
+                                    <label class='form-check-label' for={key + "-" + idx}>
+                                        {val}
+                                    </label>
+                                </div>
+                            );
+                        })}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary">
@@ -80,8 +93,8 @@ class Category extends Component{
                     <div class='row'>
                         {KeywordCategory.map((val,idx,arr) => {
                             return (
-                                <KeywordCloud keyword={val.key} 
-                                idx={idx}></KeywordCloud>
+                                <KeywordSelector keyword={val.key} 
+                                idx={idx}></KeywordSelector>
                             );
                         })}
                     </div>

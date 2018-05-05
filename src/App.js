@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from './navbar/Navigation';
 import KeywordMain from './keyword_page/keyword';
-import Gifts from './recommend_page/GiftViewer';
+import Gifts from './gifts_page/giftspage';
 
 const tabs=[
   {

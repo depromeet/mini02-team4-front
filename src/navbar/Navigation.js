@@ -10,7 +10,7 @@ class NavItem  extends Component {
         return this.props.tabs.map((val ,idx, arr) => (
                         <a id={val.label} 
                             role="tab" data-toggle="tab" 
-                            className={idx===0?className + " active": className} 
+                            className={idx===1?className + " active": className} 
                             href={"#" + val.label + 'tab'} key={val.label} 
                             aria-controls={val.label + 'tab'}>
                             {val.name}
@@ -44,11 +44,10 @@ class Navigation extends Component {
                 </nav>
                 <div className="tab-content tab-mt-md tab-mt-lg tab-mt-xl tab-mt-sm">
                     {this.props.tabs.map((val, idx, arr) => {
-                        var elementType = val.body;
                         return (
                             <div 
                             id={val.label + 'tab'}
-                            className={'tab-pane' + (idx===0?' show active':'')}
+                            className={'tab-pane' + (idx===1?' show active':'')}
                             role={'tabpanel'}
                             >{React.createElement(val.body)}</div>
                         );
