@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './navigation.css';
-import logo from '../images/iconx2.png';
+import logo from '../images/logo.png';
 
 const $ = window.jQuery;
 
-const startPos = 0;
+const startPos = 1;
 class NavItem  extends Component {
     render() {
         let className="nav-item nav-link";
@@ -69,7 +69,6 @@ class Navigation extends Component {
                         <div className="navbar-header">
                             <a href="#" className="navbar-brand">
                                 <img src={logo} alt="tify logo" className="" width=""/>
-                                tify
                             </a>
                         </div>
                         <div className="container w-100">

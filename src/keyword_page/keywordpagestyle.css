@@ -5,3 +5,60 @@
 #keyword-cloud {
     margin: 12px;
 }
+
+.previewImage{
+    margin-top: 20px;
+    display: inline-block;
+    border-radius: 100%;
+    margin:0;
+    margin-left:auto;
+    margin-right: auto;
+    border: 5px grey solid;
+    width: 160px;
+    height: 160px;
+}
+
+.imgPreview {
+    width: 160px;
+    height: 160px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.dday-component {
+    width: 640px;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+#female, #male {
+    width:0 !important;
+    visibility: hidden;
+}
+.step, .step-name {
+    text-align: center !important;
+    color: skyblue;
+}
+
+#tag {
+    margin-left: 20px;
+    width: 550px;
+    border: none;
+}
+.tag-cloud {
+    margin-right: 12px;
+    padding-left:12px;
+    padding-right:12px;
+    font-size: 18px;
+    font-weight: normal;
+    padding-top:8px;
+    padding-bottom: 8px;
+}
+.tag-remover {
+    border-radius:50%;
+    background:white !important;
+    margin-left:8px;
+    width: 24px;
+    height: 24px;
+    color: skyblue;
+    padding: 0;
+}
