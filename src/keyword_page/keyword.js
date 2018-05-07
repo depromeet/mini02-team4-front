@@ -16,6 +16,7 @@ class DdayUpload extends React.Component {
       this._handleRadioChange = this._handleRadioChange.bind(this);
       this._handleTextChange = this._handleTextChange.bind(this);
       this._handleTagInput = this._handleTagInput.bind(this);
+      this._handleItemDelete = this._handleItemDelete.bind(this);
     }
   
     _handleSubmit(e) {
@@ -53,14 +54,23 @@ class DdayUpload extends React.Component {
         var data = (e.target.value);
         this.setState({tag:''});
         console.log(data);
+        if (this.state.keywords.indexOf(data) < 0){
         this.setState((prevState, props) => {
             var keywords = prevState.keywords;
             keywords.push(data);
             return keywords;
           });
+        }
       }
     }
+    _handleItemDelete(e) {
+      let keywords = this.state.keywords;
+      let idx = keywords.indexOf(e.target.id);
+      keywords.splice(idx,1);
 
+      this.setState({
+        keywords:keywords});
+    }
     render() {
       let {imagePreviewUrl} = this.state;
       let $imagePreview = null;
@@ -69,7 +79,8 @@ class DdayUpload extends React.Component {
       } else {
         $imagePreview = (<div className="previewImage"></div>);
       }
-  
+      let keywords = this.state.keywords;
+      let remover = [];
       return (
         <div className="dday-component mt-5">
           <form onSubmit={(e)=>this._handleSubmit(e)}>
@@ -99,12 +110,14 @@ class DdayUpload extends React.Component {
             <input value={this.state.tag} onKeyPress={this._handleTagInput} onChange={this._handleTextChange} type='text' id='tag' name='tag' className='' />
           </div>
           </form>
-          {this.state.keywords.map((val, idx, arr) => (
-            <div className='badge badge-primary tag-cloud mt-2'> 
-              <div className='d-inline-block'> #{val} </div>
-              <div className='tag-remover btn btn-light d-inline-block'>&times;</div>
-            </div>
-          ))}
+          {keywords.map((val, idx, arr) => {
+              return (
+              <div className='badge badge-primary tag-cloud mt-2'> 
+                <div className='d-inline-block'> #{val} </div>
+                <div onClick={this._handleItemDelete}id={val} className='tag-remover btn btn-light d-inline-block'>&times;</div>
+              </div>
+              )
+          })}
 {/*             <button className="submitButton" 
               type="submit" 
               onClick={(e)=>this._handleSubmit(e)}>Upload Image</button> */}

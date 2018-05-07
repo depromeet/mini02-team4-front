@@ -23,7 +23,6 @@ const fullPageOtions = {
 class Navigation extends Component {
     constructor(props) {
         super(props);
-        this.trueHeight = window.innerHeight;
     }
 
     onNavtabClickHandle(e) {
@@ -32,10 +31,10 @@ class Navigation extends Component {
     }
 
     componentDidMount() {
-        window.innerHeight = 800;
+        window.innerHeight = 1080;
     }
     componentDidUpdate() {
-        window.innerHeight = 800;
+        window.innerHeight = 1080; 
     }
 
     render() {
