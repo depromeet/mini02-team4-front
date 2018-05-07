@@ -23,6 +23,7 @@ const fullPageOtions = {
 class Navigation extends Component {
     constructor(props) {
         super(props);
+        this.trueHeight = window.innerHeight;
     }
 
     onNavtabClickHandle(e) {
@@ -30,6 +31,12 @@ class Navigation extends Component {
         changeFullpageSlide(e.target.id);
     }
 
+    componentDidMount() {
+        window.innerHeight = 800;
+    }
+    componentDidUpdate() {
+        window.innerHeight = 800;
+    }
 
     render() {
         var tabs = this.props.tabs.map((val, idx, arr) => {
@@ -39,7 +46,9 @@ class Navigation extends Component {
                             id={val.label + 'tab'}
                             className='tify-content'
                             >
+                                <div id='tify-content-body'>
                                 {React.createElement(val.body)}
+                                </div>
                             </Slide>
                         );
                     });
@@ -53,8 +62,8 @@ class Navigation extends Component {
                             <img className='navbar-brand' src={logo} alt='tify' />
                             <Scrollspy className='nav' items={this.props.tabs.map((val,idx,arr) => {
                                 return val.label + 'tab';
-                            })} currentClassName='nav-item tify-active'
-                                scrolledPastClassName='nav-item'
+                            })} currentClassName='tify-active'
+                                scrolledPastClassName=''
                             >
                                 {this.props.tabs.map((val, idx, arr) => ( 
                                     <li key={val.label+'nav'} className='nav-item'>
@@ -75,13 +84,4 @@ class Navigation extends Component {
     }
 }
 
-function scrollNavStart(nav) {
-    // make the nav fixed when we start scrolling horizontally
-    nav.style.position = 'fixed';
-}
-  
-function scrollNavEnd(nav) {
-    // make the nav absolute when scroll finishes
-    nav.style.position = 'absolute';
-}
 export default Navigation;

@@ -72,6 +72,10 @@
     padding-top: 80px !important;
     margin-left: auto;
     margin-right: auto;
+    height: 800px !important;
+}
+#tify-content-body {
+    height: 800px !important;
 }
 #main-desc.row {
     display: inline-block;
