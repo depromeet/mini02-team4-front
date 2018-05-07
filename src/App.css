@@ -33,3 +33,8 @@ body, #root {
   height:100%;
   font-family: 'NanumSquare', sans-serif;
 }
+body {
+  position: relative;
+  overflow-y: scroll;
+  height: 800px;
+}

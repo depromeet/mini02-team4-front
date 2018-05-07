@@ -2,98 +2,86 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './navigation.css';
 import logo from '../images/logo.png';
+import { Fullpage, Slide, HorizontalSlider } from 'fullpage-react';
+import Scrollspy from 'react-scrollspy';
+const { changeFullpageSlide, changeHorizontalSlide } = Fullpage;
+
 
 const $ = window.jQuery;
 
 const startPos = 1;
-class NavItem  extends Component {
-    render() {
-        let className="nav-item nav-link";
-        return this.props.tabs.map((val ,idx, arr) => (
-                        <a id={val.label} 
-                            role="tab" data-toggle="tab" 
-                            className={idx===startPos?className + " active": className} 
-                            href={"#" + val.label + 'tab'} key={val.label} 
-                            aria-controls={val.label + 'tab'}>
-                            {val.name}
-                        </a>
-                        )
-                    );
-    }
+const fullPageOtions = {
+    scrollSensitivity: 7,
+    touchSensitivity: 7,
+    scrollSpeed: 500,
+    hideScrollBars: true,
+    enableArrowKeys: true,
+    resetSlides: true,
+    activeSlide: 0,
 }
 
 class Navigation extends Component {
     constructor(props) {
         super(props);
-        this.scrolling = 0;
-        this.currentPos = 0;
-        this.scrollDown = this.scrollDown.bind(this);
-        this.scrollUp = this.scrollUp.bind(this);
-        this.ref = React.createRef();
     }
-    
-    scrollUp(){
-        if(!this.scrolling&& this.currentPos > 0 ){
-            this.scrolling=true;
-            this.currentPos --;
-            var scrollToElement = $('.tab-pane')[this.currentPos];
 
-            $('html, body').animate({
-                scrollTop: $(scrollToElement).offset().top
-            }, 500, function(){
-                this.scrolling = false;
-            });      
-        }
-    }   
-
-    scrollDown(){   
-        if(!this.scrolling && this.currentPos < $('.tab-pane').length-1  ){
-            this.scrolling=true;
-            this.currentPos ++;
-            var scrollToElement = $('.tab-pane')[this.currentPos];
-
-            $('html, body').animate({
-                scrollTop: $(scrollToElement).offset().top
-            }, 500,function(){
-                this.scrolling = false;
-            }); 
-        }
-    }    
-    componentDidMount () {
+    onNavtabClickHandle(e) {
+        e.preventDefault();
+        changeFullpageSlide(e.target.id);
     }
+
+
     render() {
-        return (
-            <div id='navigation-bar'>
-                <nav id="nav-tab" className="main-nav navbar sticky-top">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <a href="#" className="navbar-brand">
-                                <img src={logo} alt="tify logo" className="" width=""/>
-                            </a>
-                        </div>
-                        <div className="container w-100">
-                            <div className="nav nav-pills nav-fill" role="tablist">
-                                {<NavItem tabs={this.props.tabs}></NavItem>}
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-                <div className="tab-content">
-                    {this.props.tabs.map((val, idx, arr) => {
+        var tabs = this.props.tabs.map((val, idx, arr) => {
                         return (
-                            <div 
+                            <Slide
                             key={val.label + 'tab'}
                             id={val.label + 'tab'}
-                            className={'tab-pane ' + (idx===startPos?' show active':'')}
-                            role={'tabpanel'}
-                            >{React.createElement(val.body)}
-                            </div>
+                            className='tify-content'
+                            >
+                                {React.createElement(val.body)}
+                            </Slide>
                         );
-                    })}
+                    });
+
+        fullPageOtions.slides = tabs;
+        return (
+            <React.Fragment>
+                <div id='tify-content' >
+                    <Fullpage {...fullPageOtions}>
+                        <nav id='tify-navbar' className='navbar nvabar-light fixed-top'>
+                            <img className='navbar-brand' src={logo} alt='tify' />
+                            <Scrollspy className='nav' items={this.props.tabs.map((val,idx,arr) => {
+                                return val.label + 'tab';
+                            })} currentClassName='nav-item tify-active'
+                                scrolledPastClassName='nav-item'
+                            >
+                                {this.props.tabs.map((val, idx, arr) => ( 
+                                    <li key={val.label+'nav'} className='nav-item'>
+                                        <a id={idx} 
+                                        className='nav-link tify-nav-tab' 
+                                        href={'#'+val.label+'tab'}
+                                        onClick={this.onNavtabClickHandle.bind(this)}>
+                                        {val.name}
+                                        </a>
+                                    </li>
+                                ))}
+                            </Scrollspy>
+                        </nav>
+                    </Fullpage>
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 }
 
+function scrollNavStart(nav) {
+    // make the nav fixed when we start scrolling horizontally
+    nav.style.position = 'fixed';
+}
+  
+function scrollNavEnd(nav) {
+    // make the nav absolute when scroll finishes
+    nav.style.position = 'absolute';
+}
 export default Navigation;

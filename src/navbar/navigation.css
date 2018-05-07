@@ -2,7 +2,9 @@
     box-shadow: 0px 5px 10px grey;
     background: white;
 }
-
+.tify-active a{
+    color: #00a8ff !important;
+}
 @media (min-width: 190px) {
     .tab-mt-sm {
         margin-top: 220px !important;
@@ -36,8 +38,12 @@
         height: 60px !important;
     }
 }
-
-#nav-tab{
+.tify-indicator {
+    height: 80px !important;
+    margin:0;
+    padding: 0;
+}
+#tify-navbar{
     width: 1280px !important;
     height: 80px !important;
     margin-left: auto;
@@ -46,19 +52,24 @@
 .navbar-header {
     margin-right: 280px !important;
 }
-.nav-item {
+.tify-nav-tab:hover {
+    color: #32b9fc;
+}
+.tify-nav-tab{
+    font-weight: bold;
     margin-left: 74px;
     display: inline-block !important;
     padding: 0px !important;
-    width:50px !important;
+    color: grey;
 }
 .tab-body{
     display: block;
     width:100%; 
     height: 1000px !important;
 }
-.tab-content {
+.tify-content {
     width: 1280px !important;
+    padding-top: 80px !important;
     margin-left: auto;
     margin-right: auto;
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Navigation from './navbar/Navigation';
-/* import Navigation from './navbar/ScrollNavigation'; */
 import KeywordMain from './keyword_page/keyword';
 import Gifts from './gifts_page/giftspage';
 import Friends from './friends/friends';
@@ -14,22 +13,22 @@ const tabs=[
     'label': 'nav-main',
   },
   {
-    'name': '키워드',
+    'name': '생일 등록',
     'body': KeywordMain, 
     'label': 'nav-keywords',
   },
   {
-    'name': '추천 선물',
+    'name': '키워드 등록',
     'body': Gifts,
     'label': 'nav-gifts',
   },
    {
-    'name': '친구들',
+    'name': '선물 추천',
     'body': Friends,
     'label': 'nav-friends',
   },
   {
-    'name': '친구에게',
+    'name': '참여자 정보',
     'body': 'div', 
     'label': 'nav-account',
   } 
