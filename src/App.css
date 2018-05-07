@@ -26,7 +26,10 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
-body {
-  font-size: 120px;
+body, #root {
+  width: 1280px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  height:100%;
+  font-family: 'NanumSquare', sans-serif;
 }

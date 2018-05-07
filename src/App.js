@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import Navigation from './navbar/Navigation';
+/* import Navigation from './navbar/ScrollNavigation'; */
 import KeywordMain from './keyword_page/keyword';
 import Gifts from './gifts_page/giftspage';
+import Friends from './friends/friends';
+import Main from './mainpage/Main';
+import './include/bootstrap';
 
 const tabs=[
+  {
+    'name': 'ABOUT',
+    'body': Main,
+    'label': 'nav-main',
+  },
   {
     'name': '키워드',
     'body': KeywordMain, 
@@ -16,7 +25,7 @@ const tabs=[
   },
    {
     'name': '친구들',
-    'body': 'div',
+    'body': Friends,
     'label': 'nav-friends',
   },
   {
@@ -28,11 +37,7 @@ const tabs=[
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-        </header>
-        <Navigation tabs={tabs}></Navigation>
-      </div>
+      <Navigation tabs={tabs}></Navigation>
     );
   }
 }

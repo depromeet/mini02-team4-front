@@ -1,111 +1,28 @@
 import React, { Component } from 'react';
 import '../include/bootstrap';
-import './keywordstyle.css';
+import './keywordpagestyle.css';
 import KeywordCategory from './category';
+import '../keyword_cloud/keyword-cloud';
+import 'react-dates/initialize';
+import ImagesUplodaer from 'react-images-uploader';
+import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 
-function Person(propts) {
-    return (
-        <div id='personal-info' className='text-center h2'>
-            여기는 사진 ! <br/>
-            이름은: 전해성, 나이는: 27살
-        </div>
-    );
-}
-function Birthday(props) {
-    return (
-        //props.birthday
-        <div id='birthday' className ='text-center h3'>
-            2017년 8월 8일
-        </div>
-    );
-}
 
-function TargetInfo(props) {
-    return (
-        <div id='target-info' className='text-center h1'>
-            <Person></Person>
-            <Birthday></Birthday>
-        </div>
-    );
-}
-
-function KeywordSelector (props) {
-    return (
-        <button id='keyword-cloud' 
-        className='btn btn-primary text-center col-xs-4 col-sm-3 col-md-2' 
-        data-toggle='modal'
-        data-target={'#keyword-modal-' + props.idx}>
-            {props.keyword}
-        </button>
-    );
-}
-
-function CategoryModal(props) {
-    var key = props.keywordData.key;
-    var items = props.keywordData.items;
-    return (
-        <div class='modal fade' 
-        id={'keyword-modal-' + props.idx} 
-        role='dialog' 
-        tabindex='1' 
-        aria-labelledby={'keyword-modal-label' + props.idx}
-        aria-hidden='true'>
-            <div class='modal-dialog' role='document'>
-                <div class='modal-content'>
-                    <div class='modal-header'>
-                        <h5 class="modal-title">
-                            {key}
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        {items.map((val, idx, arr) => {
-                            return (
-                                <div class='form-check'>
-                                    <input class='form-check-input' type='checkbox'
-                                        value={val} id={key + "-" + idx}>
-                                    </input>
-                                    <label class='form-check-label' for={key + "-" + idx}>
-                                        {val}
-                                    </label>
-                                </div>
-                            );
-                        })}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">
-                        저장하기</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    </div> 
-                </div>
-            </div>
-        </div>
-    );
-}
-class Category extends Component{
+class DdayInput extends Component {
     render() {
         return (
-            <div id='keyword-category' className=''>
-                <h2>카테고리</h2>
-                <div className="container-fluid">
-                    <div class='row'>
-                        {KeywordCategory.map((val,idx,arr) => {
-                            return (
-                                <KeywordSelector keyword={val.key} 
-                                idx={idx}></KeywordSelector>
-                            );
-                        })}
-                    </div>
-                </div>
-                {KeywordCategory.map((val, idx, arr) => {
-                    return (
-                        <CategoryModal idx={idx} 
-                            keywordData={val}>
-                            </CategoryModal>
-                    )
-                })}
+            <div id='input-dday'>
+                <form >
+                    <input type='file' name='profile' />
+                    <input type='text' name='name' placeholder='생일 주인공 이름' />
+                    <input type='date' name='birthday' placeholder='생일 날짜' />
+                    <button className='btn btn-outline-primary' style={{display:'inline-block'}}>
+                        여자
+                    </button>
+                    <button className='btn btn-outline-secondary' style={{display:'inline-block'}}>
+                        남자
+                    </button>
+                </form>
             </div>
         );
     }
@@ -114,8 +31,7 @@ class KeywordMain extends Component {
     render() {
         return (
             <div className='tagmain'>
-                <TargetInfo></TargetInfo>
-                <Category></Category>
+                <DdayInput></DdayInput>
             </div>
         );
     }

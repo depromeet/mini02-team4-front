@@ -1,28 +1,8 @@
 import React, {Component} from 'react';
 import './giftspage.css';
 import logo from '../logo.svg';
+import KeywordCloud from '../keyword_cloud/keyword-cloud';
 
-
-function Keyword(props) {
-    return (
-        <button className='btn bt-info mr-4 mt-2'>
-            Keyword
-        </button>
-    );
-}
-class KeywordCloud extends Component{
-    render() {
-        return (
-            <div className='mb-5'>
-                <Keyword></Keyword>
-                <Keyword></Keyword>
-                <Keyword></Keyword>
-                <Keyword></Keyword>
-                <Keyword></Keyword>
-            </div>
-        );
-    }
-}
 
 const pbColors = [
     '', 'success', 'info', 'warning', 'danger'
@@ -63,7 +43,7 @@ class Reviews extends Component{
 class GiftCard extends Component {
     render() {
         return ( 
-            <div className='card mr-3 d-inline-block' style={{'width': '18rem'}}>
+            <div className='card mr-3 d-inline-block mb-3' style={{'width': '18rem'}}>
                 <div className='card-header'>
                     card title header
                 </div>
@@ -101,10 +81,12 @@ class GiftsRecommend extends Component {
 class Gifts extends Component {
     render() {
         return (
-            <div>
-                This is Gift page.
-                <KeywordCloud></KeywordCloud>
-                <GiftsRecommend></GiftsRecommend>
+            <div className='row align-items-center justify-content-center'>
+                <div className='col'>
+                    This is Gift page.
+                    <KeywordCloud></KeywordCloud>
+                    <GiftsRecommend></GiftsRecommend>
+                </div>
             </div>
         );
     }

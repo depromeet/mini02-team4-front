@@ -1,0 +1,59 @@
+#main-jumbotron {
+    color: white;
+    padding-left: 210px;
+    background-image: url('../images/about-back.png');
+    height: 502px;
+}
+
+.hr-custom {
+    display:block !important;
+    width: 14px !important;
+    border-top-width: 2px !important;
+    border: 1px solid white;
+    text-align: left !important;;
+    display: inline-block !important;
+    margin-bottom: 14px;
+    margin-top: 87px;
+}
+
+#jumbo-text{
+    display: inline-block !important;
+    margin-top: 78px;
+    margin-bottom: 87px;
+}
+
+#jumbo-link{
+    display: inline-block !important;
+    margin-left: 466px;
+}
+.menucard {
+    display: inline-block;
+    text-align: center;
+    padding: 0;
+    color: #818181;
+    font-weight: bold;
+}
+.desc-txt {
+    font-family: 'nanumsquare';
+    font-size: 11px;
+    font-weight: normal;
+}
+
+body {
+    font-family: 'nanumsquare';
+}
+#tify-plan {
+    font-size: 39px !important;
+    line-height:1.5;
+    letter-spacing: -1.9px;
+    font-weight: bold;
+}
+#tify-desc {
+    display: block;
+    font: 20px !important;
+    line-height:1.4;
+    letter-spacing: -1px;
+}
+#d-day-btn {
+    width: 134px;
+}
