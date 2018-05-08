@@ -5,6 +5,9 @@ import KeywordCategory from './category';
 import '../keyword_cloud/keyword-cloud';
 import 'react-dates/initialize';
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import profile_img from '../images/profile_ic.png';
+import camera_ic from '../images/camera_ic.png';
+import register_bg from '../images/register_bg.png';
 
 
 class DdayUpload extends React.Component {
@@ -75,52 +78,61 @@ class DdayUpload extends React.Component {
       let {imagePreviewUrl} = this.state;
       let $imagePreview = null;
       if (imagePreviewUrl) {
-        $imagePreview = (<img className='previewImage' src={imagePreviewUrl} />);
+        $imagePreview = (<img className='previewImage btn' src={imagePreviewUrl} />);
       } else {
-        $imagePreview = (<div className="previewImage"></div>);
+        $imagePreview = (<div className="previewImage btn" style={{backgroundImage:`url(${profile_img})`,
+              backgroundSize:'cover'}}></div>);
       }
       let keywords = this.state.keywords;
       let remover = [];
       return (
-        <div className="dday-component mt-5">
-          <form onSubmit={(e)=>this._handleSubmit(e)}>
-          <p class='step mb-3'>01</p>
-          <p class='step-name mb-3'>생일 등록</p>
-            <input className="form-control fileInput" 
-              type="file" 
-              onChange={(e)=>this._handleImageChange(e)} />
-            <div className="imgPreview">
+        <div className="dday-component">
+          <form style={{backgroundImage:`url(${register_bg})`,
+          backgroundSize:'cover',
+          paddingTop:'47px', paddingBottom:'57px',
+          marginBottom:'48px'}} onSubmit={(e)=>this._handleSubmit(e)}>
+            {/*         프로필 업로더      */}
+            <label for='upload' id='img-upload-label'>
+              <input id='upload' className="form-control fileInput" 
+                type="file"
+                style={{display:'none'}} 
+                onChange={(e)=>this._handleImageChange(e)} />
               {$imagePreview}
-            </div>
-            <input style={{display:'block'}} value={this.state.name} className='mt-5 mb-3 form-control' type='text' name='name' placeholder='생일 주인공 이름' onChange={this._handleTextChange}/>
-            <input style={{display:'block'}} value={this.state.birthday} className='mb-3 form-control' type='date' name='birthday' placeholder='생일 날짜' onChange={this._handleTextChange}/>
-            <div className='input-group'>
+              <img id='camera-ic' src={camera_ic} />
+            </label>
+
+            {/*         이름 및 생일 */}
+            <input style={{display:'block'}} value={this.state.name} className='form-control' type='text' name='name' placeholder='생일 주인공 이름' onChange={this._handleTextChange}/>
+            <input style={{display:'block'}} value={this.state.birthday} className='form-control' type='date' name='birthday' placeholder='생일 날짜' onChange={this._handleTextChange}/>
+
+            {/* 성별 */}
+            <div className='gender-group input-group'>
                 <input onChange={this._handleRadioChange} value='female' type='radio' id='female' name='gender' className='' style={{display:'inline-block'}}/>
-                <label for='female' className={'btn btn-outline-' + (this.state.gender=='female'?'primary':'secondary') + ' form-control'} >여자</label>
+                <label style={{marginRight:'15px'}} for='female' className={'gender-label btn btn-outline-' + (this.state.gender=='female'?'primary':'secondary') + ' form-control'} >여자</label>
                 <input onChange={this._handleRadioChange} value='male' type='radio' id='male' name='gender' className='' style={{display:'inline-block'}}/>
-                <label for='male' className={'btn btn-outline-' + (this.state.gender=='male'?'primary':'secondary') + ' form-control'}>남자</label>
+                <label for='male' className={'gender-label btn btn-outline-' + (this.state.gender=='male'?'primary':'secondary') + ' form-control'}>남자</label>
             </div>
-          <p className='step mb-3'>02</p>
-          <p className='step-name mb-3'>키워드 등록</p>
-          <p className='mb-3'>주인공의 선호 키워드 입력</p>
-          <div className='input-group form-control'>
-            <div className='input-group-prepend'>
+          </form>
+          <p className='keyword-title'>주인공의 선호 키워드 입력</p>
+          <div className='input-group form-control tag-input-box'>
+            <div className='input-group-prepend'
+            style={{marginLeft:'8px', marginRight:'16px', 
+            fontSize:'31px',
+            boxSizing:'border-box'}} >
               #
             </div>
-            <input value={this.state.tag} onKeyPress={this._handleTagInput} onChange={this._handleTextChange} type='text' id='tag' name='tag' className='' />
+            <input value={this.state.tag} onKeyPress={this._handleTagInput} onChange={this._handleTextChange} type='text' id='tag' name='tag' className='tag-input' />
+            <div className='tag-area'>
+            {keywords.map((val, idx, arr) => {
+                return (
+                <div className='badge tag-cloud mt-2'> 
+                  <div className='d-inline-block'> #{val} </div>
+                  <div onClick={this._handleItemDelete}id={val} className='tag-remover btn btn-light d-inline-block'>&times;</div>
+                </div>
+                )
+            })}
+            </div>
           </div>
-          </form>
-          {keywords.map((val, idx, arr) => {
-              return (
-              <div className='badge badge-primary tag-cloud mt-2'> 
-                <div className='d-inline-block'> #{val} </div>
-                <div onClick={this._handleItemDelete}id={val} className='tag-remover btn btn-light d-inline-block'>&times;</div>
-              </div>
-              )
-          })}
-{/*             <button className="submitButton" 
-              type="submit" 
-              onClick={(e)=>this._handleSubmit(e)}>Upload Image</button> */}
         </div>
       );
     }

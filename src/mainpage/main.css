@@ -54,6 +54,10 @@ body {
     line-height:1.4;
     letter-spacing: -1px;
 }
+#jumbo-link {
+    background-repeat: no-repeat;
+}
 #d-day-btn {
-    width: 134px;
+    width: 140px;
+    height:40px;
 }

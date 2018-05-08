@@ -43,11 +43,8 @@ class Reviews extends Component{
 class GiftCard extends Component {
     render() {
         return ( 
-            <div className='card mr-3 d-inline-block mb-3' style={{'width': '18rem'}}>
-                <div className='card-header'>
-                    card title header
-                </div>
-                <img className='card-img-top' src={logo} alt='gift card' />
+            <div className=' shadow card mr-3 d-inline-block mb-3' style={{'width': '18rem'}}>
+                <img className={'card-img-top'} src={logo} alt='gift card' />
                 <div className='card-body'>
                     <h5 className='card-title'>Gift card title</h5>
                     <h6 className='card-subtitle mb-2 text-muted'>
@@ -72,8 +69,16 @@ class GiftsRecommend extends Component {
     render() {
         return (
             <div>
-                <GiftCard></GiftCard>
-                <GiftCard></GiftCard>
+                <GiftCard index={0}></GiftCard>
+                <GiftCard index={1}></GiftCard>
+                <GiftCard index={0}></GiftCard>
+                <GiftCard index={1}></GiftCard>
+                <GiftCard index={0}></GiftCard>
+                <GiftCard index={1}></GiftCard>
+                <GiftCard index={0}></GiftCard>
+                <GiftCard index={1}></GiftCard>
+                <GiftCard index={0}></GiftCard>
+                <GiftCard index={1}></GiftCard>
             </div>
         );
     }
